@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te amo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<section>
+    <div class="img-slider">
+        <div class="slide active">
+            <img src="1.jpg" alt="">
+            <div class="info">
+                <h2>27/10/2022</h2>
+                <p>Te envío estas flores amarillas virtualmente, con la esperanza de que alegren tu día tanto como tú alegras el mío. ¡Feliz Día de las Flores Amarillas! 🌼💛</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="2.jpg" alt="">
+            <div class="info"></div>
+        </div>
+        <div class="slide">
+            <img src="3.jpg" alt="">
+            <div class="info"></div>
+        </div>
+        <div class="slide">
+            <img src="4.jpg" alt="">
+            <div class="info"></div>
+        </div>
+        <div class="slide">
+            <img src="5.jpg" alt="">
+            <div class="info"></div>
+        </div>
+        
+        <div class="navigation">
+            <div class="btn active"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+        </div>
+    </div>
+
+    <button class="open-btn" onclick="window.location.href='rosas.html'">Ver regalo☞💛</button>
+
+    <script type="text/javascript">
+        var slides = document.querySelectorAll('.slide');
+        var btns = document.querySelectorAll('.btn');
+        let currentSlide = 0;
+
+        // Navegación manual
+        var manualNav = function(manual) {
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
+            });
+            btns.forEach((btn) => {
+                btn.classList.remove('active');
+            });
+
+            slides[manual].classList.add('active');
+            btns[manual].classList.add('active');
+        }
+
+        btns.forEach((btn, i) => {
+            btn.addEventListener("click", () => {
+                manualNav(i);
+                currentSlide = i;
+            });
+        });
+
+        // Navegación automática cada 5 segundos
+        var repeat = function() {
+            let repeater = () => {
+                setTimeout(function() {
+                    slides[currentSlide].classList.remove('active');
+                    btns[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                    btns[currentSlide].classList.add('active');
+                    repeater();
+                }, 5000); // Cambiar cada 5 segundos
+            }
+            repeater();
+        }
+        repeat();
+
+        // Función del botón "Ver regalo"
+        function openFunction() {
+            alert('¡Botón "Ver regalo" presionado!');
+        }
+    </script>
+</section>
+</body>
+</html>
